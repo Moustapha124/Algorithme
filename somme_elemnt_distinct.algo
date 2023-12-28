@@ -1,0 +1,40 @@
+ALGORITHM somme_elemnt_distinct
+VAR
+    a: ARRAY_OF INTEGER[4];
+    b: ARRAY_OF INTEGER[5];
+    i, j: INTEGER;
+    isDistinct: BOOLEAN;
+    k: INTEGER;
+BEGIN
+    a := {3, 1, 7, 9};
+    b := {2, 4, 1, 9, 3};
+    k := 0;
+    isDistinct := TRUE; // Supposons que l'élément de a est distinct
+
+    FOR i FROM 0 TO a.length-1 DO
+        FOR j FROM 0 TO b.length-1 DO
+            IF (a[i] = b[j]) THEN
+                isDistinct := FALSE; // Réinitialiser si un élément de a est trouvé dans b
+                BREAK;
+            END_IF
+        END_FOR
+
+        IF (isDistinct) THEN
+            k := k + a[i]; // Si l'élément de a est distinct, l'ajouter à la somme
+        END_IF
+    END_FOR
+    FOR j FROM 0 TO b.length-1 DO
+        FOR i FROM 0 TO a.length-1 DO
+            IF (b[j]= a[i]) THEN
+                isDistinct:= FALSE;
+                BREAK;
+            END_IF
+        END_FOR
+
+        IF (isDistinct) THEN
+            Write(b[j]);
+        END_IF
+    END_FOR
+
+    Write("Somme des éléments distincts : ", k);
+END

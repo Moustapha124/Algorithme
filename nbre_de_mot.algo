@@ -1,0 +1,29 @@
+ALGORITHM nbre_de_mot
+VAR
+    phrase: STRING;
+    count,i,nbre_voyelle,nbre_consonne : INTEGER;
+BEGIN
+    count:=0;
+    nbre_voyelle:=0;
+    nbre_consonne:=0;
+    Write("Ecrivez une phrase se terminant par un point");
+    Read(phrase);
+
+    WHILE (phrase[phrase.length-1]===".") DO // tant que la phrase se termine par un point
+        FOR i FROM 0 TO phrase.length-1 DO
+            IF (phrase[i]===" ") THEN // si il  y a un espace il va incrementer afin de compter un mot
+                count:= count+1;
+            ELSE IF (phrase[i] = 'a' OR phrase[i] = 'e' OR phrase[i] = 'i' OR phrase[i] = 'o' OR phrase[i] = 'u' OR phrase[i] = 'A' OR phrase[i] = 'E' OR phrase[i] = 'I' OR phrase[i] = 'O' OR phrase[i] = 'U') THEN
+                nbre_voyelle:=nbre_voyelle+1;//je prend en compte les Majuscules au cas ou
+            ELSE
+                nbre_consonne:=nbre_consonne+1;
+            END_IF
+        END_FOR
+
+        Write("Le nombre de mot est: ",count+1); //count + 1 car si il arrive au point il n'y a pas d'espace entre le dernier mot et le point donc j'ajoute 1 pour compter le dernier mot
+        Write("Le nombre de voyelle est: ",nbre_voyelle);
+        Write("Le nombre de consonne est: ",nbre_consonne);
+    END_WHILE
+
+    
+END
